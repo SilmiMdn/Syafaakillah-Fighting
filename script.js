@@ -184,8 +184,8 @@ function speakNext() {
   const utterance = new SpeechSynthesisUtterance(text);
 
   utterance.lang = 'id-ID';
-  utterance.rate = 1.08;   // sedikit di atas normal — semangat tapi tidak terburu
-  utterance.pitch = 1.25;   // ceria tanpa terdengar palsu
+  utterance.rate = 1.1;   // sedikit di atas normal — semangat tapi tidak terburu
+  utterance.pitch = 1.4;   // ceria tanpa terdengar palsu
   utterance.volume = 1;
 
   const voice = pickBestVoice();
@@ -212,12 +212,15 @@ function speakNext() {
 let keepAliveTimer = null;
 function startKeepAlive() {
   stopKeepAlive();
+  // Android Chrome butuh nudge lebih sering — setiap 3 detik
   keepAliveTimer = setInterval(() => {
-    if (window.speechSynthesis.speaking && narratorActive) {
-      window.speechSynthesis.pause();
-      window.speechSynthesis.resume();
-    }
-  }, 10000);
+    if (!narratorActive) { stopKeepAlive(); return; }
+    const ss = window.speechSynthesis;
+    if (ss.paused) { ss.resume(); return; }
+    if (!ss.speaking) { speakNext(); return; } // Android kadang diam tanpa onend
+    ss.pause();
+    ss.resume();
+  }, 3000);
 }
 function stopKeepAlive() {
   if (keepAliveTimer) { clearInterval(keepAliveTimer); keepAliveTimer = null; }
@@ -398,8 +401,8 @@ const TIMELINE_NARRATION = [
 
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'id-ID';
-    utterance.rate = 1.08;
-    utterance.pitch = 1.25;
+    utterance.rate = 1.1;
+    utterance.pitch = 1.4;
     utterance.volume = 1;
 
     const voice = pickBestVoice();
@@ -451,8 +454,8 @@ const TIMELINE_NARRATION = [
         'Selamat! Kamu sudah melihat semua cerita heroikmu! Kamu luar biasa!'
       );
       outro.lang = 'id-ID';
-      outro.rate = 1.08;
-      outro.pitch = 1.25;
+      outro.rate = 1.1;
+      outro.pitch = 1.4;
       const v = pickBestVoice();
       if (v) outro.voice = v;
       window.speechSynthesis.speak(outro);
@@ -471,8 +474,8 @@ const TIMELINE_NARRATION = [
         'Siap-siap! Yuk kita saksikan kisah heroik di dalam tubuhmu!'
       );
       intro.lang = 'id-ID';
-      intro.rate = 1.08;
-      intro.pitch = 1.25;
+      intro.rate = 1.1;
+      intro.pitch = 1.4;
       const v = pickBestVoice();
       if (v) intro.voice = v;
       intro.onend = () => { if (isPlaying) highlightStep(currentIdx); };
@@ -563,11 +566,13 @@ function createSectionNarrator(btn, segments) {
 
   function keepAlive() {
     kaTimer = setInterval(() => {
-      if (window.speechSynthesis.speaking && active) {
-        window.speechSynthesis.pause();
-        window.speechSynthesis.resume();
-      }
-    }, 10000);
+      if (!active) { stopKA(); return; }
+      const ss = window.speechSynthesis;
+      if (ss.paused) { ss.resume(); return; }
+      if (!ss.speaking) { next(); return; } // Android diam tanpa onend
+      ss.pause();
+      ss.resume();
+    }, 3000);
   }
 
   function stopKA() {
@@ -581,8 +586,8 @@ function createSectionNarrator(btn, segments) {
     const text = queue.shift();
     const utt = new SpeechSynthesisUtterance(text);
     utt.lang = 'id-ID';
-    utt.rate = 1.08;
-    utt.pitch = 1.25;
+    utt.rate = 1.1;
+    utt.pitch = 1.4;
     utt.volume = 1;
     const v = pickBestVoice();
     if (v) utt.voice = v;
