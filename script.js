@@ -56,22 +56,21 @@ function stopAllSpeech() {
  * Putar antrian segmen teks satu per satu.
  * Mengembalikan objek { stop } untuk memberhentikan dari luar.
  */
+/**
+ * Putar semua segmen sebagai SATU string panjang.
+ * Ini mencegah Android memotong audio di jeda antar segmen.
+ * Mengembalikan objek { stop }.
+ */
 function playQueue(segments, onAllDone) {
-  let idx = 0;
   let stopped = false;
 
-  function next() {
-    if (stopped || idx >= segments.length) {
-      if (!stopped && onAllDone) onAllDone();
-      return;
-    }
-    const text = segments[idx++];
-    speakText(text, () => {
-      if (!stopped) setTimeout(next, 150);
-    });
-  }
+  // Gabung semua segmen dengan spasi — satu utterance tanpa henti
+  const fullText = segments.join(' ');
 
-  next();
+  speakText(fullText, () => {
+    if (!stopped && onAllDone) onAllDone();
+  });
+
   return {
     stop() {
       stopped = true;
