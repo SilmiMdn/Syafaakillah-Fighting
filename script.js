@@ -170,13 +170,21 @@ function pickBestVoice() {
 
 /**
  * Speak one segment, then chain to the next automatically.
- * This avoids the Chrome ~15s cutoff bug by keeping each utterance short.
+ *
+ * Android Chrome fix:
+ * - TIDAK menggunakan pause/resume (merusak antrian di Android)
+ * - Polling setiap 500ms: kalau synthesis diam tapi antrian masih ada,
+ *   paksa lanjut ke segmen berikutnya
+ * - onend tetap dipakai sebagai trigger utama di desktop
  */
+let _speakingWatchdog = null;
+let _lastSegmentStart = 0;
+
 function speakNext() {
   if (!narratorActive || narratorQueue.length === 0) {
-    // All done
     setNarratorUI(false);
     narratorActive = false;
+    stopKeepAlive();
     return;
   }
 
@@ -184,43 +192,53 @@ function speakNext() {
   const utterance = new SpeechSynthesisUtterance(text);
 
   utterance.lang = 'id-ID';
-  utterance.rate = 1.1;   // sedikit di atas normal — semangat tapi tidak terburu
-  utterance.pitch = 1.4;   // ceria tanpa terdengar palsu
+  utterance.rate = 1.1;
+  utterance.pitch = 1.4;
   utterance.volume = 1;
 
   const voice = pickBestVoice();
   if (voice) utterance.voice = voice;
 
-  // Chain: when this segment ends, speak the next one
+  _lastSegmentStart = Date.now();
+
+  utterance.onstart = () => { _lastSegmentStart = Date.now(); };
+
   utterance.onend = () => {
-    if (narratorActive) speakNext();
+    if (narratorActive) {
+      setTimeout(speakNext, 120); // jeda kecil antar segmen
+    }
   };
 
   utterance.onerror = (e) => {
-    // 'interrupted' fires when we cancel manually — that's expected, ignore it
     if (e.error === 'interrupted') return;
-    if (narratorActive) speakNext(); // skip bad segment, continue
+    if (narratorActive) setTimeout(speakNext, 120);
   };
 
   window.speechSynthesis.speak(utterance);
 }
 
 /**
- * Workaround for another Chrome bug: speechSynthesis pauses after ~30s
- * in some Chrome versions. Nudge it every 10s to keep it alive.
+ * Watchdog polling — mendeteksi Android Chrome yang diam tanpa onend.
+ * Tidak menggunakan pause/resume sama sekali.
+ * Hanya bertindak kalau synthesis benar-benar diam > 2 detik
+ * padahal antrian masih ada.
  */
 let keepAliveTimer = null;
 function startKeepAlive() {
   stopKeepAlive();
-  // Android Chrome butuh nudge lebih sering — setiap 3 detik
   keepAliveTimer = setInterval(() => {
     if (!narratorActive) { stopKeepAlive(); return; }
     const ss = window.speechSynthesis;
-    if (ss.paused) { ss.resume(); return; }
-    if (!ss.speaking) { speakNext(); return; } // Android kadang diam tanpa onend
-    ss.pause();
-    ss.resume();
-  }, 3000);
+    const elapsed = Date.now() - _lastSegmentStart;
+
+    // Kalau tidak sedang berbicara dan sudah diam > 2 detik → paksa lanjut
+    if (!ss.speaking && elapsed > 2000 && narratorQueue.length > 0) {
+      _lastSegmentStart = Date.now();
+      speakNext();
+    }
+    // Kalau Android terjebak di paused state → resume saja, jangan pause lagi
+    if (ss.paused) { ss.resume(); }
+  }, 800);
 }
 function stopKeepAlive() {
   if (keepAliveTimer) { clearInterval(keepAliveTimer); keepAliveTimer = null; }
@@ -564,15 +582,19 @@ function createSectionNarrator(btn, segments) {
     }
   }
 
+  let _kaLastStart = 0;
+
   function keepAlive() {
     kaTimer = setInterval(() => {
       if (!active) { stopKA(); return; }
       const ss = window.speechSynthesis;
-      if (ss.paused) { ss.resume(); return; }
-      if (!ss.speaking) { next(); return; } // Android diam tanpa onend
-      ss.pause();
-      ss.resume();
-    }, 3000);
+      const elapsed = Date.now() - _kaLastStart;
+      if (!ss.speaking && elapsed > 2000 && queue.length > 0) {
+        _kaLastStart = Date.now();
+        next();
+      }
+      if (ss.paused) ss.resume();
+    }, 800);
   }
 
   function stopKA() {
@@ -591,8 +613,10 @@ function createSectionNarrator(btn, segments) {
     utt.volume = 1;
     const v = pickBestVoice();
     if (v) utt.voice = v;
-    utt.onend = () => { if (active) next(); };
-    utt.onerror = (e) => { if (e.error !== 'interrupted' && active) next(); };
+    _kaLastStart = Date.now();
+    utt.onstart = () => { _kaLastStart = Date.now(); };
+    utt.onend = () => { if (active) setTimeout(next, 120); };
+    utt.onerror = (e) => { if (e.error !== 'interrupted' && active) setTimeout(next, 120); };
     window.speechSynthesis.speak(utt);
   }
 
