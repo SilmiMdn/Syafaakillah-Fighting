@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Halo Pahlawan Cilik! 🌟</title>
+
+  <!-- Google Fonts: Fredoka -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- canvas-confetti via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="hero">
+    <div class="hero-stars" aria-hidden="true">
+      <span class="star s1">⭐</span>
+      <span class="star s2">✨</span>
+      <span class="star s3">⭐</span>
+      <span class="star s4">✨</span>
+      <span class="star s5">🌟</span>
+    </div>
+    <div class="hero-content">
+      <div class="badge">🏆 Misi Pemulihan</div>
+      <h1 class="hero-title">Halo Pahlawan Cilik!</h1>
+      <p class="hero-subtitle">
+        Hebat, kamu sudah berhasil mengalahkan virus-virus nakal itu!<br />
+        Sekarang waktunya membangun kembali markasmu. 💪
+      </p>
+      <!-- Narrator button -->
+      <button id="btn-speak" class="btn-speaker" aria-label="Bacakan teks ini">
+        🔊 <span>Dengarkan Cerita</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== EDUCATION CARDS ===== -->
+  <main class="main-content">
+    <h2 class="section-title">Senjata Rahasia Pemulihan</h2>
+
+    <div class="cards-grid" role="list">
+
+      <!-- Card 1: Protein -->
+      <article class="card card--protein" role="listitem" tabindex="0">
+        <div class="card-icon" aria-hidden="true">🥚🍗</div>
+        <h3 class="card-title">Batu Bata Kuat</h3>
+        <p class="card-desc">
+          Daging, telur, dan tempe bekerja menambal luka dan
+          membangun ototmu lagi.
+        </p>
+        <div class="card-badge">Protein 💪</div>
+      </article>
+
+      <!-- Card 2: Vitamin -->
+      <article class="card card--vitamin" role="listitem" tabindex="0">
+        <div class="card-icon" aria-hidden="true">🥦🍎</div>
+        <h3 class="card-title">Perisai Ajaib</h3>
+        <p class="card-desc">
+          Sayur dan buah adalah perisai penjaga agar virus tidak
+          berani datang lagi.
+        </p>
+        <div class="card-badge">Vitamin 🛡️</div>
+      </article>
+
+      <!-- Card 3: Air Putih -->
+      <article class="card card--water" role="listitem" tabindex="0">
+        <div class="card-icon" aria-hidden="true">💧🥛</div>
+        <h3 class="card-title">Sungai Pembersih</h3>
+        <p class="card-desc">
+          Air menyapu bersih semua kotoran sisa perang dari dalam
+          tubuhmu.
+        </p>
+        <div class="card-badge">Air Putih 💦</div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- ===== TIMELINE: PERJALANAN TIPES ===== -->
+  <section class="timeline-section" id="timeline">
+    <div class="timeline-header">
+      <div class="badge">📖 Kisah Perjuangan</div>
+      <h2 class="section-title">Perjalanan Heroikmu Melawan Tipes</h2>
+      <p class="timeline-intro">Ini adalah kisah nyata yang terjadi di dalam tubuhmu. Kamu luar biasa!</p>
+      <button id="btn-play-timeline" class="btn-play-timeline" aria-label="Putar animasi cerita">
+        ▶ Putar Cerita
+      </button>
+    </div>
+
+    <div class="timeline-track" role="list" aria-label="Tahapan perjalanan tipes">
+
+      <!-- STEP 1: Serangan Awal -->
+      <div class="tl-step tl-step--danger" role="listitem" data-step="1">
+        <div class="tl-connector" aria-hidden="true"></div>
+        <div class="tl-dot" aria-hidden="true">
+          <span class="tl-dot-num">1</span>
+        </div>
+        <div class="tl-card">
+          <div class="tl-scene" aria-hidden="true">
+            <!-- SVG: Bakteri Salmonella menyerbu -->
+            <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" class="tl-svg" aria-hidden="true">
+              <!-- Latar usus -->
+              <ellipse cx="100" cy="110" rx="85" ry="35" fill="#ffe8e8" stroke="#f4a0a0" stroke-width="2" />
+              <text x="100" y="116" text-anchor="middle" font-size="11" fill="#c0605a" font-family="sans-serif">Usus
+                Halus</text>
+              <!-- Bakteri x3 -->
+              <g class="svg-bacteria">
+                <ellipse cx="45" cy="60" rx="14" ry="9" fill="#e63946" opacity="0.9" />
+                <line x1="31" y1="55" x2="20" y2="48" stroke="#e63946" stroke-width="2" />
+                <line x1="31" y1="65" x2="20" y2="72" stroke="#e63946" stroke-width="2" />
+                <line x1="59" y1="55" x2="70" y2="48" stroke="#e63946" stroke-width="2" />
+                <line x1="59" y1="65" x2="70" y2="72" stroke="#e63946" stroke-width="2" />
+                <text x="45" y="64" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">😈</text>
+              </g>
+              <g class="svg-bacteria" style="animation-delay:0.3s">
+                <ellipse cx="100" cy="45" rx="14" ry="9" fill="#e63946" opacity="0.9" />
+                <line x1="86" y1="40" x2="75" y2="33" stroke="#e63946" stroke-width="2" />
+                <line x1="86" y1="50" x2="75" y2="57" stroke="#e63946" stroke-width="2" />
+                <line x1="114" y1="40" x2="125" y2="33" stroke="#e63946" stroke-width="2" />
+                <line x1="114" y1="50" x2="125" y2="57" stroke="#e63946" stroke-width="2" />
+                <text x="100" y="49" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">😈</text>
+              </g>
+              <g class="svg-bacteria" style="animation-delay:0.6s">
+                <ellipse cx="155" cy="60" rx="14" ry="9" fill="#e63946" opacity="0.9" />
+                <line x1="141" y1="55" x2="130" y2="48" stroke="#e63946" stroke-width="2" />
+                <line x1="141" y1="65" x2="130" y2="72" stroke="#e63946" stroke-width="2" />
+                <line x1="169" y1="55" x2="180" y2="48" stroke="#e63946" stroke-width="2" />
+                <line x1="169" y1="65" x2="180" y2="72" stroke="#e63946" stroke-width="2" />
+                <text x="155" y="64" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">😈</text>
+              </g>
+              <!-- Panah serangan ke usus -->
+              <line x1="45" y1="72" x2="75" y2="100" stroke="#e63946" stroke-width="2" stroke-dasharray="4 3"
+                marker-end="url(#arrow-r)" />
+              <line x1="100" y1="57" x2="100" y2="92" stroke="#e63946" stroke-width="2" stroke-dasharray="4 3"
+                marker-end="url(#arrow-r)" />
+              <line x1="155" y1="72" x2="130" y2="100" stroke="#e63946" stroke-width="2" stroke-dasharray="4 3"
+                marker-end="url(#arrow-r)" />
+              <defs>
+                <marker id="arrow-r" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#e63946" />
+                </marker>
+              </defs>
+              <!-- Label makanan terkontaminasi -->
+              <text x="100" y="20" text-anchor="middle" font-size="10" fill="#aa3030" font-family="sans-serif"
+                font-weight="bold">Salmonella typhi masuk lewat makanan!</text>
+            </svg>
+          </div>
+          <div class="tl-content">
+            <span class="tl-tag tl-tag--danger">Hari 1–3</span>
+            <h3 class="tl-title">😱 Serangan Dimulai!</h3>
+            <p class="tl-desc">
+              Bakteri jahat bernama <strong>Salmonella typhi</strong> masuk ke tubuhmu lewat
+              makanan atau minuman yang tidak bersih. Mereka bersembunyi di usus halus dan
+              mulai berkembang biak dengan cepat, seperti pasukan musuh yang diam-diam
+              menduduki markasmu.
+            </p>
+            <div class="tl-fact">🔬 Fakta: 1 bakteri bisa jadi 1 juta dalam hitungan jam!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2: Tubuh Melawan -->
+      <div class="tl-step tl-step--warning" role="listitem" data-step="2">
+        <div class="tl-connector" aria-hidden="true"></div>
+        <div class="tl-dot" aria-hidden="true">
+          <span class="tl-dot-num">2</span>
+        </div>
+        <div class="tl-card">
+          <div class="tl-scene" aria-hidden="true">
+            <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" class="tl-svg" aria-hidden="true">
+              <!-- Sel darah putih (pahlawan) -->
+              <g class="svg-wbc">
+                <circle cx="80" cy="80" r="22" fill="#4cc9f0" opacity="0.9" />
+                <circle cx="80" cy="80" r="12" fill="#023e8a" opacity="0.7" />
+                <text x="80" y="85" text-anchor="middle" font-size="14" fill="white">🛡️</text>
+              </g>
+              <g class="svg-wbc" style="animation-delay:0.4s">
+                <circle cx="130" cy="65" r="18" fill="#4cc9f0" opacity="0.9" />
+                <circle cx="130" cy="65" r="10" fill="#023e8a" opacity="0.7" />
+                <text x="130" y="70" text-anchor="middle" font-size="12" fill="white">⚔️</text>
+              </g>
+              <!-- Bakteri yang diserang -->
+              <ellipse cx="110" cy="110" rx="13" ry="8" fill="#e63946" opacity="0.7" />
+              <text x="110" y="114" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">😵</text>
+              <!-- Garis pertempuran -->
+              <line x1="98" y1="93" x2="105" y2="105" stroke="#4cc9f0" stroke-width="3" stroke-linecap="round" />
+              <line x1="120" y1="77" x2="115" y2="103" stroke="#4cc9f0" stroke-width="3" stroke-linecap="round" />
+              <!-- Sinyal SOS = demam -->
+              <text x="100" y="20" text-anchor="middle" font-size="10" fill="#d62828" font-family="sans-serif"
+                font-weight="bold">Sistem imun AKTIF → demam naik!</text>
+              <!-- Termometer -->
+              <rect x="170" y="30" width="10" height="50" rx="5" fill="#ffb703" opacity="0.6" />
+              <rect x="172" y="65" width="6" height="17" rx="3" fill="#e63946" />
+              <text x="175" y="25" text-anchor="middle" font-size="11" fill="#e63946">🌡️</text>
+              <text x="175" y="95" text-anchor="middle" font-size="9" fill="#aa3030"
+                font-family="sans-serif">39°C</text>
+            </svg>
+          </div>
+          <div class="tl-content">
+            <span class="tl-tag tl-tag--warning">Hari 3–7</span>
+            <h3 class="tl-title">⚔️ Perang Dimulai!</h3>
+            <p class="tl-desc">
+              Tubuhmu bukan tanpa perlawanan! <strong>Sel darah putih</strong> — pahlawan
+              kecil di dalam darahmu — mendeteksi musuh dan bergegas menyerang. Sebagai sinyal
+              perang, tubuh menaikkan suhu menjadi demam agar bakteri tidak nyaman.
+              Ini bukan sakit biasa, ini <em>pertempuran epik</em>!
+            </p>
+            <div class="tl-fact">🛡️ Fakta: Demam adalah cara tubuhmu "membakar" bakteri!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: Gejala Terasa -->
+      <div class="tl-step tl-step--symptom" role="listitem" data-step="3">
+        <div class="tl-connector" aria-hidden="true"></div>
+        <div class="tl-dot" aria-hidden="true">
+          <span class="tl-dot-num">3</span>
+        </div>
+        <div class="tl-card">
+          <div class="tl-scene" aria-hidden="true">
+            <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" class="tl-svg" aria-hidden="true">
+              <!-- Sosok anak berbaring -->
+              <!-- Kepala -->
+              <circle cx="100" cy="45" r="22" fill="#ffd6a5" />
+              <circle cx="92" cy="40" r="3" fill="#333" />
+              <circle cx="108" cy="40" r="3" fill="#333" />
+              <!-- Mulut lesu -->
+              <path d="M92 52 Q100 48 108 52" stroke="#a0522d" stroke-width="2" fill="none" />
+              <!-- Mata berair -->
+              <path d="M89 45 Q90 47 91 45" stroke="#4cc9f0" stroke-width="1.5" fill="none" />
+              <!-- Keringat -->
+              <text x="122" y="30" font-size="10" fill="#4cc9f0">💧</text>
+              <text x="130" y="45" font-size="9" fill="#4cc9f0">💧</text>
+              <!-- Badan berbaring -->
+              <rect x="50" y="68" width="100" height="30" rx="15" fill="#ffd6a5" />
+              <!-- Selimut -->
+              <rect x="45" y="82" width="110" height="18" rx="8" fill="#a0c4ff" opacity="0.7" />
+              <!-- Gejala ikon -->
+              <text x="20" y="55" font-size="13">🌡️</text>
+              <text x="155" y="55" font-size="13">🤢</text>
+              <text x="20" y="100" font-size="13">😴</text>
+              <text x="155" y="100" font-size="13">🤕</text>
+              <!-- Teks gejala -->
+              <text x="100" y="130" text-anchor="middle" font-size="9" fill="#5a5a8a" font-family="sans-serif">Demam
+                tinggi · Mual · Sakit perut · Lemas</text>
+              <text x="100" y="145" text-anchor="middle" font-size="9" fill="#5a5a8a" font-family="sans-serif">Sakit
+                kepala · Tidak nafsu makan</text>
+            </svg>
+          </div>
+          <div class="tl-content">
+            <span class="tl-tag tl-tag--symptom">Hari 7–14</span>
+            <h3 class="tl-title">🤒 Gejala yang Kamu Rasakan</h3>
+            <p class="tl-desc">
+              Pertempuran di dalam tubuh terasa berat. Ini gejala yang mungkin kamu alami:
+            </p>
+            <ul class="tl-symptoms-list">
+              <li>🌡️ <strong>Demam tinggi</strong> — naik terus terutama sore & malam hari</li>
+              <li>🤢 <strong>Mual & muntah</strong> — perut terasa tidak karuan</li>
+              <li>😴 <strong>Sangat lemas</strong> — energi terkuras habis untuk berperang</li>
+              <li>🤕 <strong>Sakit kepala & perut</strong> — titik utama pertempuran</li>
+              <li>😶 <strong>Tidak nafsu makan</strong> — tubuh fokus berperang, bukan makan</li>
+            </ul>
+            <div class="tl-fact">💡 Ingat: Semua ini tanda tubuhmu sedang BERJUANG keras!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4: Diberi Infus -->
+      <div class="tl-step tl-step--treatment" role="listitem" data-step="4">
+        <div class="tl-connector" aria-hidden="true"></div>
+        <div class="tl-dot" aria-hidden="true">
+          <span class="tl-dot-num">4</span>
+        </div>
+        <div class="tl-card">
+          <div class="tl-scene" aria-hidden="true">
+            <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" class="tl-svg" aria-hidden="true">
+              <!-- Kantong infus -->
+              <rect x="80" y="5" width="40" height="55" rx="12" fill="#b8e4f9" stroke="#4cc9f0" stroke-width="2" />
+              <text x="100" y="28" text-anchor="middle" font-size="9" fill="#023e8a" font-family="sans-serif"
+                font-weight="bold">INFUS</text>
+              <text x="100" y="42" text-anchor="middle" font-size="16">💊</text>
+              <!-- Cairan mengalir -->
+              <line x1="100" y1="60" x2="100" y2="80" stroke="#4cc9f0" stroke-width="3" stroke-linecap="round"
+                class="svg-drip-line" />
+              <!-- Titik tetes -->
+              <circle cx="100" cy="72" r="3" fill="#4cc9f0" class="svg-drip-dot" opacity="0" />
+              <!-- Jarum/selang -->
+              <rect x="90" y="80" width="20" height="5" rx="2" fill="#90e0ef" />
+              <line x1="100" y1="85" x2="100" y2="105" stroke="#90e0ef" stroke-width="3" />
+              <!-- Lengan anak -->
+              <rect x="60" y="100" width="80" height="30" rx="12" fill="#ffd6a5" />
+              <line x1="97" y1="105" x2="97" y2="118" stroke="#e9c46a" stroke-width="1.5" />
+              <!-- Kepala anak di sudut -->
+              <circle cx="155" cy="80" r="18" fill="#ffd6a5" />
+              <circle cx="149" cy="76" r="2.5" fill="#333" />
+              <circle cx="160" cy="76" r="2.5" fill="#333" />
+              <path d="M149 86 Q155 90 161 86" stroke="#a0522d" stroke-width="1.5" fill="none" />
+              <!-- Bintang penyembuhan -->
+              <text x="30" y="60" font-size="16" class="svg-heal-star">⭐</text>
+              <text x="170" y="60" font-size="14" class="svg-heal-star" style="animation-delay:0.5s">✨</text>
+              <text x="100" y="148" text-anchor="middle" font-size="9" fill="#023e8a" font-family="sans-serif">Cairan &
+                antibiotik langsung masuk ke darah!</text>
+            </svg>
+          </div>
+          <div class="tl-content">
+            <span class="tl-tag tl-tag--treatment">Di Rumah Sakit</span>
+            <h3 class="tl-title">🏥 Bantuan Datang: Infus!</h3>
+            <p class="tl-desc">
+              Dokter memberikan <strong>infus</strong> — sebuah selang kecil yang mengalirkan
+              cairan langsung ke pembuluh darahmu. Ini bukan sesuatu yang perlu ditakuti!
+              Infus adalah cara tercepat membawa bala bantuan:
+            </p>
+            <ul class="tl-symptoms-list">
+              <li>💧 <strong>Cairan</strong> — mengisi kembali tubuh yang kehilangan banyak air</li>
+              <li>⚡ <strong>Elektrolit</strong> — mengembalikan energi dan keseimbangan tubuh</li>
+              <li>🔬 <strong>Antibiotik</strong> — pasukan khusus yang langsung membunuh bakteri</li>
+            </ul>
+            <div class="tl-fact">🏆 Kamu sangat berani menerima infus itu! Itu tindakan pahlawan!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5: Obat & Makanan Bergizi -->
+      <div class="tl-step tl-step--recovery" role="listitem" data-step="5">
+        <div class="tl-connector" aria-hidden="true"></div>
+        <div class="tl-dot" aria-hidden="true">
+          <span class="tl-dot-num">5</span>
+        </div>
+        <div class="tl-card">
+          <div class="tl-scene" aria-hidden="true">
+            <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" class="tl-svg" aria-hidden="true">
+              <!-- Meja makan -->
+              <rect x="30" y="105" width="140" height="12" rx="4" fill="#e9c46a" />
+              <rect x="50" y="117" width="10" height="25" rx="3" fill="#e9c46a" />
+              <rect x="140" y="117" width="10" height="25" rx="3" fill="#e9c46a" />
+              <!-- Mangkuk bubur -->
+              <ellipse cx="80" cy="100" rx="30" ry="12" fill="#fff3cd" stroke="#e9c46a" stroke-width="2" />
+              <ellipse cx="80" cy="96" rx="22" ry="8" fill="#ffe8a1" />
+              <text x="80" y="101" text-anchor="middle" font-size="12">🍲</text>
+              <!-- Gelas air -->
+              <rect x="125" y="80" width="22" height="30" rx="5" fill="#caf0f8" stroke="#90e0ef" stroke-width="1.5" />
+              <text x="136" y="100" text-anchor="middle" font-size="12">💧</text>
+              <!-- Obat -->
+              <rect x="158" y="85" width="16" height="8" rx="4" fill="#ffb3c6" />
+              <rect x="166" y="85" width="8" height="8" rx="0" fill="#ff758f" />
+              <text x="166" y="80" text-anchor="middle" font-size="11">💊</text>
+              <!-- Buah-buahan -->
+              <text x="30" y="92" font-size="16">🍎</text>
+              <text x="15" y="110" font-size="14">🥦</text>
+              <!-- Panah masuk ke tubuh -->
+              <path d="M80 88 Q85 65 100 55" stroke="#2dc653" stroke-width="2.5" fill="none" stroke-dasharray="5 3"
+                marker-end="url(#arrow-g)" />
+              <path d="M136 78 Q130 60 115 55" stroke="#2dc653" stroke-width="2.5" fill="none" stroke-dasharray="5 3"
+                marker-end="url(#arrow-g)" />
+              <!-- Anak yang mulai semangat -->
+              <circle cx="100" cy="40" r="18" fill="#ffd6a5" />
+              <circle cx="94" cy="36" r="2.5" fill="#333" />
+              <circle cx="106" cy="36" r="2.5" fill="#333" />
+              <path d="M94 46 Q100 51 106 46" stroke="#a0522d" stroke-width="2" fill="none" />
+              <!-- Pipi merah tanda sehat -->
+              <circle cx="90" cy="44" r="5" fill="#ffb3c6" opacity="0.5" />
+              <circle cx="110" cy="44" r="5" fill="#ffb3c6" opacity="0.5" />
+              <defs>
+                <marker id="arrow-g" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#2dc653" />
+                </marker>
+              </defs>
+              <text x="100" y="148" text-anchor="middle" font-size="9" fill="#1a7a3a" font-family="sans-serif">Nutrisi +
+                Obat = Bahan Bakar Kemenangan!</text>
+            </svg>
+          </div>
+          <div class="tl-content">
+            <span class="tl-tag tl-tag--recovery">Masa Pemulihan</span>
+            <h3 class="tl-title">🍲 Bala Bantuan: Obat & Makanan!</h3>
+            <p class="tl-desc">
+              Antibiotik membunuh bakteri dari dalam, tapi <strong>makanan bergizilah</strong>
+              yang membangun kembali markas yang rusak. Kombinasi keduanya adalah
+              strategi kemenangan terbaik!
+            </p>
+            <ul class="tl-symptoms-list">
+              <li>💊 <strong>Antibiotik</strong> — membunuh sisa-sisa pasukan Salmonella</li>
+              <li>🍲 <strong>Bubur & makanan lembut</strong> — mudah dicerna, tidak membebani usus</li>
+              <li>🥚 <strong>Protein (telur, tahu, tempe)</strong> — memperbaiki sel yang rusak</li>
+              <li>🍎 <strong>Buah & vitamin C</strong> — memperkuat perisai imun kembali</li>
+              <li>💧 <strong>Banyak minum air</strong> — membuang sisa pertempuran dari tubuh</li>
+            </ul>
+            <div class="tl-fact">⚡ Fakta: Usus yang sakit butuh 2–3 minggu untuk pulih sempurna!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 6: MENANG! -->
+      <div class="tl-step tl-step--victory" role="listitem" data-step="6">
+        <div class="tl-dot" aria-hidden="true">
+          <span class="tl-dot-num">🏆</span>
+        </div>
+        <div class="tl-card">
+          <div class="tl-scene" aria-hidden="true">
+            <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" class="tl-svg tl-svg--victory"
+              aria-hidden="true">
+              <!-- Latar cerah -->
+              <defs>
+                <radialGradient id="sun-grad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" style="stop-color:#fffacd;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#ffe66d;stop-opacity:0.3" />
+                </radialGradient>
+              </defs>
+              <circle cx="100" cy="80" r="70" fill="url(#sun-grad)" opacity="0.7" />
+              <!-- Sinar matahari -->
+              <g class="svg-sunrays">
+                <line x1="100" y1="5" x2="100" y2="18" stroke="#ffe66d" stroke-width="3" stroke-linecap="round" />
+                <line x1="100" y1="142" x2="100" y2="155" stroke="#ffe66d" stroke-width="3" stroke-linecap="round" />
+                <line x1="25" y1="80" x2="12" y2="80" stroke="#ffe66d" stroke-width="3" stroke-linecap="round" />
+                <line x1="175" y1="80" x2="188" y2="80" stroke="#ffe66d" stroke-width="3" stroke-linecap="round" />
+                <line x1="50" y1="30" x2="41" y2="21" stroke="#ffe66d" stroke-width="3" stroke-linecap="round" />
+                <line x1="150" y1="30" x2="159" y2="21" stroke="#ffe66d" stroke-width="3" stroke-linecap="round" />
+                <line x1="50" y1="130" x2="41" y2="139" stroke="#ffe66d" stroke-width="3" stroke-linecap="round" />
+                <line x1="150" y1="130" x2="159" y2="139" stroke="#ffe66d" stroke-width="3" stroke-linecap="round" />
+              </g>
+              <!-- Anak sehat dan berdiri -->
+              <!-- Kaki -->
+              <line x1="88" y1="130" x2="82" y2="152" stroke="#ffd6a5" stroke-width="6" stroke-linecap="round" />
+              <line x1="112" y1="130" x2="118" y2="152" stroke="#ffd6a5" stroke-width="6" stroke-linecap="round" />
+              <!-- Badan -->
+              <rect x="82" y="95" width="36" height="38" rx="10" fill="#a0c4ff" />
+              <!-- Tangan kiri (melambai) -->
+              <line x1="82" y1="100" x2="60" y2="78" stroke="#ffd6a5" stroke-width="6" stroke-linecap="round" />
+              <circle cx="57" cy="75" r="7" fill="#ffd6a5" />
+              <!-- Tangan kanan (trofi) -->
+              <line x1="118" y1="100" x2="138" y2="85" stroke="#ffd6a5" stroke-width="6" stroke-linecap="round" />
+              <text x="138" y="80" font-size="18">🏆</text>
+              <!-- Kepala -->
+              <circle cx="100" cy="80" r="20" fill="#ffd6a5" />
+              <circle cx="93" cy="76" r="3" fill="#333" />
+              <circle cx="107" cy="76" r="3" fill="#333" />
+              <!-- Senyum lebar -->
+              <path d="M91 87 Q100 95 109 87" stroke="#a0522d" stroke-width="2.5" fill="#ffb3c6" opacity="0.6" />
+              <!-- Pipi sehat -->
+              <circle cx="88" cy="84" r="6" fill="#ffb3c6" opacity="0.6" />
+              <circle cx="112" cy="84" r="6" fill="#ffb3c6" opacity="0.6" />
+              <!-- Bakteri kalah (kecil dan pudar) -->
+              <ellipse cx="30" cy="140" rx="8" ry="5" fill="#e63946" opacity="0.3" />
+              <text x="30" y="144" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">💀</text>
+              <ellipse cx="170" cy="140" rx="8" ry="5" fill="#e63946" opacity="0.3" />
+              <text x="170" y="144" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif">💀</text>
+              <!-- Bintang kemenangan -->
+              <text x="20" y="40" font-size="16" class="svg-victory-star">⭐</text>
+              <text x="170" y="35" font-size="14" class="svg-victory-star" style="animation-delay:0.3s">🌟</text>
+              <text x="55" y="18" font-size="12" class="svg-victory-star" style="animation-delay:0.6s">✨</text>
+              <text x="135" y="18" font-size="12" class="svg-victory-star" style="animation-delay:0.9s">⭐</text>
+            </svg>
+          </div>
+          <div class="tl-content">
+            <span class="tl-tag tl-tag--victory">🎊 KAMU MENANG!</span>
+            <h3 class="tl-title tl-title--victory">🌟 Virus Kalah, Kamu Sembuh!</h3>
+            <p class="tl-desc">
+              Dengan bantuan dokter, obat-obatan, infus, dan makanan bergizi yang kamu
+              konsumsi — <strong>tubuhmu berhasil mengalahkan Salmonella!</strong>
+              Sistem imunmu kini lebih kuat dan pintar. Ia sudah menghafal wajah musuh
+              ini sehingga bisa melawannya lebih cepat jika datang kembali.
+            </p>
+            <ul class="tl-symptoms-list tl-symptoms-list--victory">
+              <li>✅ Demam turun dan hilang</li>
+              <li>✅ Nafsu makan kembali</li>
+              <li>✅ Energi perlahan pulih</li>
+              <li>✅ Bakteri berhasil dibasmi!</li>
+              <li>✅ Kamu lebih kuat dari sebelumnya!</li>
+            </ul>
+            <div class="tl-fact tl-fact--victory">🦸 KAMU adalah pahlawan yang berhasil melewati pertempuran luar biasa
+              ini!</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.timeline-track -->
+  </section>
+  <!-- ===== END TIMELINE ===== -->
+
+  <!-- ===== CTA SECTION ===== -->
+  <section class="cta-section">
+    <p class="cta-text">Kamu sudah tahu rahasianya. Sekarang buktikan! 🌈</p>
+    <button id="btn-confetti" class="btn-cta" aria-label="Aku siap makan sehat">
+      🎉 AKU SIAP MAKAN SEHAT!
+    </button>
+    <p class="cta-hint">Klik tombol di atas untuk merayakan semangatmu!</p>
+    <button id="btn-speak-cta" class="btn-speaker btn-speaker--cta" aria-label="Dengarkan pesan semangat">
+      🔊 <span>Dengarkan Pesan Semangat</span>
+    </button>
+  </section>
+
+  <!-- ===== DOA KESEMBUHAN ===== -->
+  <section class="doa-section" id="doa-sembuh">
+    <div class="doa-header">
+      <div class="badge badge--doa">🤲 Doa Kesembuhan</div>
+      <h2 class="section-title doa-title">Yuk, Tutup dengan Doa</h2>
+      <p class="doa-intro">
+        Selain makan sehat dan istirahat cukup, jangan lupa berdoa ya.<br />
+        Allah-lah yang memberi kesembuhan, kita hanya ikhtiar. 💚
+      </p>
+    </div>
+
+    <div class="doa-video-wrapper">
+      <div class="doa-video-container">
+        <iframe src="https://www.youtube.com/embed/X6y3ehdL8CI?rel=0&modestbranding=1" title="Doa Kesembuhan"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="doa-card">
+      <p class="doa-arab">اللَّهُمَّ رَبَّ النَّاسِ أَذْهِبِ الْبَاسَ اشْفِهِ وَأَنْتَ الشَّافِي لَا شِفَاءَ إِلَّا
+        شِفَاؤُكَ شِفَاءً لَا يُغَادِرُ سَقَمًا</p>
+      <p class="doa-latin">
+        <em>Allāhumma rabban-nāsi, adzhibil-bās, isyfihi wa antasy-syāfī,<br />
+          lā syifā'a illā syifā'uk, syifā'an lā yughādiru saqamā.</em>
+      </p>
+      <p class="doa-arti">
+        "Ya Allah, Tuhan seluruh manusia, hilangkanlah penyakit ini.<br />
+        Sembuhkanlah, Engkaulah Yang Maha Menyembuhkan.<br />
+        Tidak ada kesembuhan kecuali kesembuhan dari-Mu,<br />
+        kesembuhan yang tidak meninggalkan penyakit sedikit pun."
+      </p>
+      <p class="doa-source">📖 HR. Bukhari & Muslim</p>
+      <button id="btn-speak-doa" class="btn-speaker btn-speaker--doa" aria-label="Dengarkan pesan doa">
+        🔊 <span>Dengarkan Pesan Doa</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p>Dibuat dengan 💖 untuk Pahlawan Cilik yang luar biasa!</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
